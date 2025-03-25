@@ -1,0 +1,37 @@
+{
+  "name": "03-ignite-backend-solid",
+  "version": "1.0.0",
+  "description": "Gympass style App.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@eslint/js": "9.22.0",
+    "@types/node": "22.13.10",
+    "eslint": "9.22.0",
+    "eslint-config-prettier": "10.1.1",
+    "globals": "16.0.0",
+    "prisma": "6.5.0",
+    "tsup": "8.4.0",
+    "tsx": "4.19.3",
+    "typescript": "5.8.2",
+    "typescript-eslint": "8.27.0",
+    "vite-tsconfig-paths": "5.1.4",
+    "vitest": "3.0.9"
+  },
+  "dependencies": {
+    "@prisma/client": "6.5.0",
+    "@types/bcryptjs": "2.4.6",
+    "bcryptjs": "3.0.2",
+    "dotenv": "16.4.7",
+    "fastify": "^5.2.1",
+    "zod": "3.24.2"
+  }
+}
