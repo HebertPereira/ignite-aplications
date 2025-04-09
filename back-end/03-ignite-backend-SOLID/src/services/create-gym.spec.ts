@@ -5,7 +5,7 @@ import { CreateGymService } from "./create-gym";
 let gymsRepository: InMemoryGymsRepository;
 let sut: CreateGymService;
 
-describe("CreateGym Service", () => {
+describe("Create Gym Service", () => {
   beforeEach(() => {
     gymsRepository = new InMemoryGymsRepository();
     sut = new CreateGymService(gymsRepository);
@@ -13,7 +13,7 @@ describe("CreateGym Service", () => {
 
   it("should be able to create a gym", async () => {
     const { gym } = await sut.execute({
-      title: "John Doe",
+      title: "Javascript Gym",
       description: null,
       phone: null,
       latitude: -31.9399458,
