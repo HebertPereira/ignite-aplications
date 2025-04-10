@@ -16,13 +16,22 @@ export async function authenticate(
 
   try {
     const authenticateService = makeAuthenticateService();
-    await authenticateService.execute({ email, password });
+    const { user } = await authenticateService.execute({ email, password });
+
+    const token = await response.jwtSign(
+      {},
+      {
+        sign: {
+          sub: user.id
+        }
+      }
+    );
+
+    return response.status(200).send({ token });
   } catch (err: unknown) {
     if (err instanceof InvalidCredentialError) {
       return response.status(400).send({ message: err.message });
     }
     throw err;
   }
-
-  return response.status(200).send();
 }
