@@ -1,9 +1,9 @@
-import { PrismaCheckInsRepository } from "@/repositories/prisma/prisma-check-ins-repository";
 import { GetUserProfileService } from "../get-user-profile";
+import { PrismaUsersRepository } from "@/repositories/prisma/prisma-users-repository";
 
 export function makeGetUserProfileService() {
-  const checkInsRepository = new PrismaCheckInsRepository();
-  const service = new GetUserProfileService(checkInsRepository);
+  const usersRepository = new PrismaUsersRepository();
+  const service = new GetUserProfileService(usersRepository);
 
   return service;
 }

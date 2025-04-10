@@ -23,7 +23,7 @@ describe("Authenticate Service", () => {
     const createUser = await usersRepository.create(userData);
 
     const { user } = await sut.execute({
-      id: createUser.id
+      userId: createUser.id
     });
 
     expect(user.name).toEqual(userData.name);
@@ -32,7 +32,7 @@ describe("Authenticate Service", () => {
   it("should not be able to get user profile with wrong email", async () => {
     await expect(() =>
       sut.execute({
-        id: "non-existing-id"
+        userId: "non-existing-id"
       })
     ).rejects.toBeInstanceOf(ResourceNotFoundError);
   });
