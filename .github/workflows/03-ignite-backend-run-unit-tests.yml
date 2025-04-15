@@ -12,6 +12,8 @@ jobs:
 
       - run: cd ./back-end/03-ignite-backend-SOLID
 
+      - run: echo ./README.md
+
       - uses: actions/setup-node@v3
         with:
           node-version: 18
