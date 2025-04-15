@@ -10,12 +10,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - run: cd ./back-end/03-ignite-backend-SOLID
+
       - uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: "npm"
-
-      - run: cd ./back-end/03-ignite-backend-SOLID
 
       - run: npm ci
 
