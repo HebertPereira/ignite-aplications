@@ -1,12 +1,12 @@
 import crypto from "node:crypto";
+import { Org, Prisma } from "@prisma/client";
+import { Decimal } from "@prisma/client/runtime/library";
 
 import {
   FindManyNearbyParams,
   OrgsRepository
 } from "@/repositories/orgs-repository";
 import { getDistanceBetweenCoordinates } from "@/utils/get-distance-between-cordinates";
-import { Org, Prisma } from "@prisma/client";
-import { Decimal } from "@prisma/client/runtime/library";
 
 export class InMemoryOrgsRepository implements OrgsRepository {
   public items: Org[] = [];

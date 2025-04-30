@@ -1,6 +1,7 @@
 import fastify from "fastify";
-import { useRoutes } from "./http/controller/routes";
 import { ZodError } from "zod";
+
+import { useRoutes } from "./http/controller/routes";
 import { env } from "./env";
 
 export const app = fastify();
@@ -11,7 +12,7 @@ app.setErrorHandler((error, request, response) => {
   if (error instanceof ZodError) {
     return response.status(400).send({
       message: "Validation error.",
-      issues: error.format(),
+      issues: error.format()
     });
   }
 
@@ -22,6 +23,6 @@ app.setErrorHandler((error, request, response) => {
   }
 
   return response.status(500).send({
-    message: "Internal server error.",
+    message: "Internal server error."
   });
 });

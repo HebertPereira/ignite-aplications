@@ -1,6 +1,7 @@
-import { PetsRepository } from "@/repositories/pets-repository";
-import { Pet } from "@prisma/client";
 import { randomUUID } from "node:crypto";
+import { Pet } from "@prisma/client";
+
+import { PetsRepository } from "@/repositories/pets-repository";
 
 interface RegisterPetServiceResponse {
   pet: Pet;

@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
+import { Org } from "@prisma/client";
 
 import { OrgsRepository } from "@/repositories/orgs-repository";
-import { Org } from "@prisma/client";
 
 interface CreateOrgServiceRequest {
   id?: string; // Usually used for test

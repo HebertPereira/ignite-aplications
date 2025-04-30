@@ -1,4 +1,5 @@
 import { Org, Prisma } from "@prisma/client";
+
 import { FindManyNearbyParams, OrgsRepository } from "../orgs-repository";
 import { prisma } from "@/lib/prisma";
 

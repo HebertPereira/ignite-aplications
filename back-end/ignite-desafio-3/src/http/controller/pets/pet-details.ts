@@ -1,5 +1,3 @@
-// deve mostrar os detalhes de um pet existente
-
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 

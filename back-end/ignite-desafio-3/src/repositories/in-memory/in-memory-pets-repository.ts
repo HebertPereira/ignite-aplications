@@ -1,7 +1,8 @@
+import crypto from "node:crypto";
+import { Pet, Prisma } from "@prisma/client";
+
 import { InMemoryOrgsRepository } from "@/repositories/in-memory/in-memory-orgs-repository";
 import { FindAllParams, PetsRepository } from "@/repositories/pets-repository";
-import { Pet, Prisma } from "@prisma/client";
-import crypto from "node:crypto";
 
 export class InMemoryPetsRepository implements PetsRepository {
   public items: Pet[] = [];

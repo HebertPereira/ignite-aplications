@@ -15,7 +15,7 @@
     "test:ui": "vitest --ui"
   },
   "keywords": [],
-  "author": "",
+  "author": "HebertPereira",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {

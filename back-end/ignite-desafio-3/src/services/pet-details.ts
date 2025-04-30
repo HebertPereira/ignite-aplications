@@ -1,5 +1,6 @@
-import { PetsRepository } from "@/repositories/pets-repository";
 import { Pet } from "@prisma/client";
+
+import { PetsRepository } from "@/repositories/pets-repository";
 
 interface PetDetailsServiceResponse {
   pet: Pet | null;

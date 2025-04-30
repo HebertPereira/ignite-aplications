@@ -1,5 +1,3 @@
-// ira expor a rota para o cadastro de um pet
-
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
