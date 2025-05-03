@@ -2,6 +2,8 @@ import { randomUUID } from "node:crypto";
 import { Org } from "@prisma/client";
 
 import { OrgsRepository } from "@/repositories/orgs-repository";
+import { hash } from "bcryptjs";
+import { UserAlreadyExistsError } from "./errors/user-already-exists-error";
 
 interface CreateOrgServiceRequest {
   id?: string; // Usually used for test
@@ -41,22 +43,30 @@ export class CreateOrgService {
     latitude,
     longitude
   }: CreateOrgServiceRequest): Promise<CreateOrgServiceResponse> {
-    const org = await this.orgsRepository.create({
-      id: id ?? randomUUID(),
-      name,
-      author_name,
-      email,
-      whatsapp,
-      password,
-      cep,
-      state,
-      city,
-      neighborhood,
-      street,
-      latitude,
-      longitude
-    });
+    const userWithSameEmail = await this.orgsRepository.findByEmail(email);
 
-    return { org };
+    if (userWithSameEmail?.id) {
+      throw new UserAlreadyExistsError();
+    } else {
+      const newPassword = await hash(password, 6);
+
+      const org = await this.orgsRepository.create({
+        id: id ?? randomUUID(),
+        name,
+        author_name,
+        email,
+        whatsapp,
+        password: newPassword,
+        cep,
+        state,
+        city,
+        neighborhood,
+        street,
+        latitude,
+        longitude
+      });
+
+      return { org };
+    }
   }
 }

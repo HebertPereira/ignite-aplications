@@ -8,6 +8,32 @@ let orgsRepository: InMemoryOrgsRepository;
 let petsRepository: InMemoryPetsRepository;
 let sut1: FindNearbyPetsService;
 
+const orgData = {
+  id: "org1",
+  name: "Salve patinhas",
+  author_name: "Julio Verne",
+  email: "juliodescobrecterra@hotmail.com",
+  whatsapp: "+55 61 94002-8922",
+  password: "sakldjklasjd",
+  cep: "30979-825",
+  state: "Maranhão",
+  city: "Blumenau",
+  neighborhood: "Asc SA",
+  street: "Rua paratinga",
+  latitude: -31.3589621,
+  longitude: -31.3589621
+};
+
+const petData = {
+  name: "Antonis",
+  about: "Caramelo",
+  age: "2",
+  size: "medium",
+  energy_level: "moderate",
+  environment: "outdoor",
+  org_id: orgData.id
+};
+
 describe("Find Nearby Pets Service", async () => {
   beforeEach(() => {
     orgsRepository = new InMemoryOrgsRepository();
@@ -17,34 +43,11 @@ describe("Find Nearby Pets Service", async () => {
 
   it("should be able to search pets by city", async () => {
     // Step 1 - Create Orgs
-    const orgData = {
-      id: "org1",
-      name: "Salve patinhas",
-      author_name: "Julio Verne",
-      email: "juliodescobrecterra@hotmail.com",
-      whatsapp: "+55 61 94002-8922",
-      password: "sakldjklasjd",
-      cep: "30979-825",
-      state: "Maranhão",
-      city: "Blumenau",
-      neighborhood: "Asc SA",
-      street: "Rua paratinga",
-      latitude: -31.3589621,
-      longitude: -31.3589621
-    };
+
     await orgsRepository.create(orgData);
     await orgsRepository.create({ ...orgData, id: "org2", city: "Barueri" });
 
     // Step 2 - Register pet
-    const petData = {
-      name: "Antonis",
-      about: "Caramelo",
-      age: "2",
-      size: "medium",
-      energy_level: "moderate",
-      environment: "outdoor",
-      org_id: orgData.id
-    };
     await petsRepository.create(petData);
     await petsRepository.create(petData);
 
@@ -67,33 +70,9 @@ describe("Find Nearby Pets Service", async () => {
 
   it("should be able to search pets by city and age", async () => {
     // Step 1 - Create Orgs
-    const orgData = {
-      id: "org1",
-      name: "Salve patinhas",
-      author_name: "Julio Verne",
-      email: "juliodescobrecterra@hotmail.com",
-      whatsapp: "+55 61 94002-8922",
-      password: "sakldjklasjd",
-      cep: "30979-825",
-      state: "Maranhão",
-      city: "Blumenau",
-      neighborhood: "Asc SA",
-      street: "Rua paratinga",
-      latitude: -31.3589621,
-      longitude: -31.3589621
-    };
     await orgsRepository.create(orgData);
 
     // Step 2 - Register pet
-    const petData = {
-      name: "Antonis",
-      about: "Caramelo",
-      age: "2",
-      size: "medium",
-      energy_level: "moderate",
-      environment: "outdoor",
-      org_id: orgData.id
-    };
     await petsRepository.create(petData);
 
     // Create pet in another age
@@ -110,32 +89,9 @@ describe("Find Nearby Pets Service", async () => {
 
   it("should be able to search pets by city and size", async () => {
     // Step 1 - Create Orgs
-    const orgData = {
-      id: "org1",
-      name: "Salve patinhas",
-      author_name: "Julio Verne",
-      email: "juliodescobrecterra@hotmail.com",
-      whatsapp: "+55 61 94002-8922",
-      password: "sakldjklasjd",
-      cep: "30979-825",
-      state: "Maranhão",
-      city: "Blumenau",
-      neighborhood: "Asc SA",
-      street: "Rua paratinga",
-      latitude: -31.3589621,
-      longitude: -31.3589621
-    };
     await orgsRepository.create(orgData);
 
     // Step 2 - Register pet
-    const petData = {
-      name: "Antonis",
-      about: "Caramelo",
-      age: "2",
-      energy_level: "medium",
-      environment: "outdoor",
-      org_id: orgData.id
-    };
     await petsRepository.create({ ...petData, size: "low" });
     await petsRepository.create({ ...petData, size: "medium" });
     await petsRepository.create({ ...petData, size: "high" });
@@ -151,32 +107,9 @@ describe("Find Nearby Pets Service", async () => {
 
   it("should be able to search pets by city and energy_level", async () => {
     // Step 1 - Create Orgs
-    const orgData = {
-      id: "org1",
-      name: "Salve patinhas",
-      author_name: "Julio Verne",
-      email: "juliodescobrecterra@hotmail.com",
-      whatsapp: "+55 61 94002-8922",
-      password: "sakldjklasjd",
-      cep: "30979-825",
-      state: "Maranhão",
-      city: "Blumenau",
-      neighborhood: "Asc SA",
-      street: "Rua paratinga",
-      latitude: -31.3589621,
-      longitude: -31.3589621
-    };
     await orgsRepository.create(orgData);
 
     // Step 2 - Register pet
-    const petData = {
-      name: "Antonis",
-      about: "Caramelo",
-      age: "2",
-      size: "medium",
-      environment: "outdoor",
-      org_id: orgData.id
-    };
     await petsRepository.create({ ...petData, energy_level: "low" });
     await petsRepository.create({ ...petData, energy_level: "medium" });
     await petsRepository.create({ ...petData, energy_level: "high" });
@@ -192,32 +125,9 @@ describe("Find Nearby Pets Service", async () => {
 
   it("should be able to search pets by city and environment", async () => {
     // Step 1 - Create Orgs
-    const orgData = {
-      id: "org1",
-      name: "Salve patinhas",
-      author_name: "Julio Verne",
-      email: "juliodescobrecterra@hotmail.com",
-      whatsapp: "+55 61 94002-8922",
-      password: "sakldjklasjd",
-      cep: "30979-825",
-      state: "Maranhão",
-      city: "Blumenau",
-      neighborhood: "Asc SA",
-      street: "Rua paratinga",
-      latitude: -31.3589621,
-      longitude: -31.3589621
-    };
     await orgsRepository.create(orgData);
 
     // Step 2 - Register pet
-    const petData = {
-      name: "Antonis",
-      about: "Caramelo",
-      age: "2",
-      size: "medium",
-      energy_level: "medium",
-      org_id: orgData.id
-    };
     await petsRepository.create({ ...petData, environment: "indoor" });
     await petsRepository.create({ ...petData, environment: "outdoor" });
 

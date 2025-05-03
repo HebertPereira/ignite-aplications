@@ -58,5 +58,5 @@ export async function CreateOrg(
     longitude
   });
 
-  return response.status(200).send({ org });
+  return response.status(201).send({ org });
 }

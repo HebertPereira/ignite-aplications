@@ -12,7 +12,7 @@ export async function RegisterPet(
     about: z.string(),
     age: z.string(),
     size: z.enum(["small", "medium", "large"]),
-    energy_level: z.enum(["low", "medium", "high"]),
+    energy_level: z.enum(["low", "moderate", "high"]),
     environment: z.enum(["indoor", "outdoor"]),
     org_id: z.string()
   });

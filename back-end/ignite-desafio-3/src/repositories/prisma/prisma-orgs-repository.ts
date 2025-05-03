@@ -10,13 +10,34 @@ export class PrismaOrgsRepository implements OrgsRepository {
     return org;
   }
 
-  findById(id: string): Promise<Org | null> {
-    throw new Error("Method not implemented.");
+  async findById(id: string): Promise<Org | null> {
+    const org = await prisma.org.findUnique({
+      where: {
+        id: id
+      }
+    });
+
+    return org;
   }
-  findByEmail(email: string): Promise<Org | null> {
-    throw new Error("Method not implemented.");
+  async findByEmail(email: string): Promise<Org | null> {
+    const org = await prisma.org.findUnique({
+      where: {
+        email: email
+      }
+    });
+
+    return org;
   }
-  findManyNearby(params: FindManyNearbyParams): Promise<Org[]> {
-    throw new Error("Method not implemented.");
+
+  async findManyNearby({
+    latitude,
+    longitude
+  }: FindManyNearbyParams): Promise<Org[]> {
+    const gyms = await prisma.$queryRaw<Org[]>`
+    SELECT * from orgs
+    WHERE ( 6371 * acos( cos( radians(${latitude}) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(${longitude}) ) + sin( radians(${latitude}) ) * sin( radians( latitude ) ) ) ) <= 10
+  `;
+
+    return gyms;
   }
 }
