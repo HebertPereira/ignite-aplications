@@ -33,13 +33,13 @@ describe("Fetch Question Comments", async () => {
       })
     );
 
-    const { questionComments } = await sut.execute({
+    const result = await sut.execute({
       questionId: "question-1",
       page: 1
     });
 
-    expect(questionComments).toHaveLength(3);
-    expect(questionComments).toEqual([
+    expect(result.value?.questionComments).toHaveLength(3);
+    expect(result.value?.questionComments).toEqual([
       expect.objectContaining({
         createdAt: new Date(2022, 0, 23)
       }),
@@ -60,11 +60,11 @@ describe("Fetch Question Comments", async () => {
         })
       );
     }
-    const { questionComments } = await sut.execute({
+    const result = await sut.execute({
       questionId: "question-1",
       page: 2
     });
 
-    expect(questionComments).toHaveLength(2);
+    expect(result.value?.questionComments).toHaveLength(2);
   });
 });

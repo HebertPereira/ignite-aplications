@@ -10,7 +10,10 @@ export default [
     ignores: ["node_modules/*", "build/*"]
   },
   {
-    languageOptions: { globals: globals.browser }
+    languageOptions: { globals: globals.browser },
+    rules: {
+      "@typescript-eslint/no-empty-object-type": "off"
+    }
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,

@@ -4,6 +4,7 @@ import { InMemoryQuestionsRepository } from "@/test/repositories/in-memory-quest
 import { ChooseQuestionBestAnswerUseCase } from "./choose-question-best-answer";
 import { MakeAnswer } from "@/test/factories/make-answer";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id";
+import { NotAllowedError } from "./errors/not-allowed-error";
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository;
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository;
@@ -38,7 +39,7 @@ describe("Choose Question Best Answer", async () => {
     ).toEqual(Answer.id.toString());
   });
 
-  it("should not be able to choose another userquestion best answer", async () => {
+  it("should not be able to choose another user question best answer", async () => {
     const question = MakeQuestion({
       authorId: new UniqueEntityId("author-1")
     });
@@ -49,11 +50,12 @@ describe("Choose Question Best Answer", async () => {
     inMemoryAnswersRepository.create(Answer);
     inMemoryQuestionsRepository.create(question);
 
-    await expect(() => {
-      return sut.execute({
-        answerId: Answer.id.toString(),
-        authorId: "author-2"
-      });
-    }).rejects.instanceOf(Error);
+    const result = await sut.execute({
+      answerId: Answer.id.toString(),
+      authorId: "author-2"
+    });
+
+    expect(result.isLeft()).toBe(true);
+    expect(result.value).toBeInstanceOf(NotAllowedError);
   });
 });
