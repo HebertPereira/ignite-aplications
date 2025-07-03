@@ -6,7 +6,7 @@ export function MakeAnswer(
   overrides: Partial<AnswerProps> = {},
   id?: UniqueEntityId
 ) {
-  const question = Answer.create(
+  const answer = Answer.create(
     {
       authorId: new UniqueEntityId(),
       content: faker.lorem.sentence(),
@@ -16,5 +16,5 @@ export function MakeAnswer(
     id
   );
 
-  return question;
+  return answer;
 }
