@@ -3,7 +3,7 @@ import { InMemoryAnswerAttachmentsRepository } from "@/test/repositories/in-memo
 import { EditAnswerUseCase } from "./edit-answer";
 import { MakeAnswer } from "@/test/factories/make-answer";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id";
-import { NotAllowedError } from "./errors/not-allowed-error";
+import { NotAllowedError } from "@/core/errors/errors/not-allowed-error";
 import { MakeAnswerAttachment } from "@/test/factories/make-answer-attachment";
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository;

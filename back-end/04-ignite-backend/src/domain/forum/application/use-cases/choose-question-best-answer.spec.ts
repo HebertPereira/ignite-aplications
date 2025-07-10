@@ -4,7 +4,7 @@ import { InMemoryQuestionsRepository } from "@/test/repositories/in-memory-quest
 import { ChooseQuestionBestAnswerUseCase } from "./choose-question-best-answer";
 import { MakeAnswer } from "@/test/factories/make-answer";
 import { UniqueEntityId } from "@/core/entities/unique-entity-id";
-import { NotAllowedError } from "./errors/not-allowed-error";
+import { NotAllowedError } from "@/core/errors/errors/not-allowed-error";
 import { InMemoryQuestionAttachmentsRepository } from "@/test/repositories/in-memory-question-attachments-repository";
 import { InMemoryAnswerAttachmentsRepository } from "@/test/repositories/in-memory-answers-attachments-repository";
 
