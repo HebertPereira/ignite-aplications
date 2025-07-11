@@ -2,6 +2,7 @@ import { PaginationParams } from "@/core/repositories/pagination-params";
 import { AnswersRepository } from "@/domain/forum/application/repositories/answer-repository";
 import { Answer } from "@/domain/forum/enterprise/entities/answer";
 import { InMemoryAnswerAttachmentsRepository } from "./in-memory-answers-attachments-repository";
+import { DomainEvents } from "@/core/events/domain-events";
 
 export class InMemoryAnswersRepository implements AnswersRepository {
   public items: Answer[] = [];
@@ -30,6 +31,20 @@ export class InMemoryAnswersRepository implements AnswersRepository {
 
   async create(answer: Answer) {
     this.items.push(answer);
+
+    DomainEvents.dispatchEventsForAggregate(answer.id);
+  }
+
+  async save(answer: Answer): Promise<void> {
+    const itemIndex = this.items.findIndex(
+      (item) => item.id.toString() === answer.id.toString()
+    );
+
+    this.items[itemIndex] = answer;
+
+    DomainEvents.dispatchEventsForAggregate(answer.id);
+
+    return;
   }
 
   async delete(answer: Answer): Promise<void> {
@@ -42,16 +57,6 @@ export class InMemoryAnswersRepository implements AnswersRepository {
     this.inMemoryAnswerAttachmentsRepository.deleteManyByAnswerId(
       answer.id.toString()
     );
-
-    return;
-  }
-
-  async save(answer: Answer): Promise<void> {
-    const itemIndex = this.items.findIndex(
-      (item) => item.id.toString() === answer.id.toString()
-    );
-
-    this.items[itemIndex] = answer;
 
     return;
   }
