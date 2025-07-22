@@ -1,0 +1,13 @@
+services:
+  postgress:
+    container_name: nest-pg
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: nest
+      PGDATA: /data/postgres
+    volumes:
+      - ./data/pg:/data/postgres
