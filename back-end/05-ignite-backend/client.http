@@ -1,0 +1,42 @@
+@baseUrl = http://localhost:3333
+@authToken = {{authenticate.response.body.access_token}}
+
+# @name create_account
+Post {{baseUrl}}/accounts
+Content-Type: application/json
+
+{
+	"name": "John Doe Methew",
+	"email": "johndoe@example.com",
+	"password": "123456789"
+}
+
+###
+
+# @name authenticate
+Post {{baseUrl}}/sessions
+Content-Type: application/json
+
+{
+	"email": "johndoe@example.com",
+	"password": "123456789"
+}
+
+###
+
+# @name create_question
+Post {{baseUrl}}/questions
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+	"title": "Romeu perguntou a julieta sakdjs adkjsad kasdsakdjas dasldj askldjsakdlj asdlasj dlkas",
+	"content": "Lorem ips sakljd;lsa d;saljd ;saldk sadjsalkjd skldjskaljd lksadj sakljdklsa dlskajd laskdjsalk jdslakjd"
+}
+
+###
+
+# @name fetch_recent_questions
+Get {{baseUrl}}/questions?page=1&size=25
+Content-Type: application/json
+Authorization: Bearer {{authToken}}

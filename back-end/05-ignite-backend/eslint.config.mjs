@@ -9,13 +9,15 @@ export default [
     files: ["**/*.{js,mjs,cjs,ts}"],
     ignores: ["node_modules/*", "dist"]
   },
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
   {
     languageOptions: { globals: globals.browser },
     rules: {
-      "@typescript-eslint/no-empty-object-type": "off"
+      "@typescript-eslint/no-unused-vars": "off",
+      "@typescript-eslint/no-empty-object-type": "off",
+      "@typescript-eslint/no-explicit-any": "off"
     }
   },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
   eslintConfigPrettier
 ];
