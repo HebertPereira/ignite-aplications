@@ -1,3 +1,4 @@
+import { Buffer } from "node:buffer";
 import { Readable } from "node:stream";
 import nodeConsoleLoadingBar from "./nodeConsoleLoadingBar.js";
 
@@ -21,4 +22,4 @@ export class OneTohundredStream extends Readable {
   }
 }
 
-new OneTohundredStream().pipe(process.stdout);
+// new OneTohundredStream().pipe(new MultiplyByTenStream());
